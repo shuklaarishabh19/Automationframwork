@@ -11,10 +11,10 @@ import pages.LoginPage;
 import utils.ExcelUtils;
 import utils.ScreenshotUtils;
 
-@Listeners(listeners.TestListener.class)
+@Listeners({listeners.TestListener.class})
 public class LoginTest extends BaseTest{
 	
-	@Test(dataProvider = "loginData")
+	@Test(dataProvider = "loginData", retryAnalyzer = utils.RetryAnalyzer.class)
     public void loginTest(String username, String password, int rowIndex) throws Exception {
         LoginPage page = new LoginPage(driver);
         page.login(username, password);

@@ -1,9 +1,10 @@
 package Base;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
+import utils.BrowserActions;
 
 public class BaseTest {
 	
@@ -12,14 +13,19 @@ public class BaseTest {
     @BeforeMethod
     public void setup() {
         //WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://www.iimjobs.com/");
+//        driver = new ChromeDriver();
+//        driver.manage().window().maximize();
+//        driver.get("https://www.iimjobs.com/");
+    	
+    	driver=BrowserActions.launchBrowser("chrome");
+    	BrowserActions.maximizeWindow();
+    	BrowserActions.navigateToUrl("https://www.iimjobs.com/");
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+//        driver.quit();
+    	BrowserActions.quitBrowser();
     }
 
 }
